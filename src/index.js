@@ -1,8 +1,9 @@
 import "./styles.css"
 
 document.getElementById('weatherInputSubmit').addEventListener('click', (event) => {
-    event.preventDefault()
-    getForecast()
+    event.preventDefault();
+    
+    getForecast();
 })
 
 function getForecast() {
@@ -18,14 +19,16 @@ function getForecast() {
     .then(function(response) {
         response.days.forEach((day,i) => {
             // Get needed data from promise object
-            let dailyDate = day.datetime;
-            let dailyDesc = day.description;
-            let dailyIcon = day.icon;
-            let dailyFeelslike = day.feelslike;
-            let dailyPrecipProb = day.precipprob;
-            let dailyTempMin = day.tempmin;
-            let dailyTempMax = day.tempmax;
-            let dailyWindspeed = day.windspeed;
+            let dayForecast = {
+                dailyDate: day.datetime,
+                dailyDesc: day.description,
+                dailyIcon: day.icon,
+                dailyFeelslike: day.feelslike,
+                dailyPrecipProb: day.precipprob,
+                dailyTempMin: day.tempmin,
+                dailyTempMax: day.tempmax,
+                dailyWindspeed: day.windspeed
+            }
 
             // page selectors 
             let weeklyForecast = document.getElementById('displayForecast');
@@ -34,27 +37,33 @@ function getForecast() {
             dayCard.id = i;
             dayCard.classList.add('dailyCard')
             dayCard.innerHTML = `
-            <div class="date" id="date${i}">${dailyDate}</div>
-            <img src="${dailyIcon}" alt="Weather icon for today's forecast">
+            <div class="date" id="date${i}">${dayForecast.dailyDate}</div>
             <div class="temps">
-                <p class="temp" id="dailyLow${i}">${dailyTempMin}</p>
-                <p class="temp" id="feelsLike${i}">${dailyFeelslike}</p>
-                <p class="temp" id="dailyHigh${i}">${dailyTempMax}</p>
+                <p class="temp" id="dailyLow${i}"><strong>Today's Low:</strong>  ${dayForecast.dailyTempMin}&deg;F</p>
+                <p class="temp" id="feelsLike${i}"><strong>Feel's Like:</strong>  ${dayForecast.dailyFeelslike}&deg;F</p>
+                <p class="temp" id="dailyHigh${i}"><strong>Today's High:</strong>  ${dayForecast.dailyTempMax}&deg;F</p>
             </div>
-            <p class="desc" id="desc${i}">${dailyDesc}</p>
+            <p class="desc" id="desc${i}">${dayForecast.dailyDesc}</p>
             <div class="externals" id="externals${i}">
-                <p class="external" id="wind${i}">${dailyWindspeed}</p>
-                <p class="external" id="precip${i}">${dailyPrecipProb}</p>
+                <p class="external" id="wind${i}"><strong>Current Wind Speed:</strong>  ${dayForecast.dailyWindspeed} mph</p>
+                <p class="external" id="precip${i}"><strong>Precipitation Chance:</strong>  ${dayForecast.dailyPrecipProb}%</p>
             </div>
             
             `
             weeklyForecast.appendChild(dayCard)
         })
     })
+    .catch(function(reject) {
+        alert(reject);
+    })
+}
+function resetData() {
+    let weeklyForecast = document.getElementById('displayForecast');
+    let citySelector = document.getElementById('citySelector')
+    weeklyForecast.innerHTML = "";
+    citySelector.reset();
 }
 // need to dynamically import icons for use in the project
     // https://github.com/visualcrossing/WeatherIcons/tree/main/SVG/1st%20Set%20-%20Color
 // Use async and await in the function to fetch weather
 // add catch statements
-// move wanted data to a NEW object
-    // access data from here
