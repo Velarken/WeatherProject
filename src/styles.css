@@ -1,3 +1,11 @@
+p {
+    text-align: center;
+}
+#weatherSearchInput {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
 .weeklyForecast {
     display:flex;
     width:98vw;
@@ -7,6 +15,27 @@
 .dailyCard {
     display:flex;
     flex-direction: column;
-    flex:1
-
+    flex:1;
+    min-width:30vw;
+    background-color:blue;
+    color:white;
+    margin:10px;
+    padding:10px;
+    border-radius: 8px;
+}
+.temps {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.temp {
+    margin:5px;
+}
+.externals {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.external {
+    margin:10px;
 }
