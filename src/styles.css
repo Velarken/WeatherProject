@@ -1,0 +1,12 @@
+.weeklyForecast {
+    display:flex;
+    width:98vw;
+    height:auto;
+    flex-wrap: wrap;
+}
+.dailyCard {
+    display:flex;
+    flex-direction: column;
+    flex:1
+
+}
