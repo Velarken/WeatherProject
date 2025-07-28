@@ -17,6 +17,9 @@ function getForecast() {
         return response.json();
     })
     .then(function(response) {
+        let cityName = document.getElementById('cityName')
+        console.log(response);
+        cityName.textContent = response.address
         response.days.forEach((day,i) => {
             // Get needed data from promise object
             let dayForecast = {
@@ -67,3 +70,6 @@ function resetData() {
     // https://github.com/visualcrossing/WeatherIcons/tree/main/SVG/1st%20Set%20-%20Color
 // Use async and await in the function to fetch weather
 // add catch statements
+
+// change 14 day forecast function to only show range 1-14 in array
+// create individual forecast card to show 0 in array - current day
