@@ -6,7 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="weatherSearchInput">
+        <label for="cityInput">City</label>
+        <input type="text" name="cityInput" id="cityInput" required>
+        <label for="stateInput">State</label>
+        <input type="text" name="stateInput" id="stateInput" required>
+        <button id="weatherInputSubmit">Get Weather</button>
+    </div>
+    <div class="weeklyForecast" id="displayForecast"></div>
     <script src="index.js" type="module"></script>
 </body>
 </html>
